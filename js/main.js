@@ -216,7 +216,7 @@ function initAboutReadMore() {
 }
 
 // ─── OPEN TO WORK TOGGLE ──────────────────────────────────────
-function initOTWToggle() {
+/*function initOTWToggle() {
   const toggle = document.getElementById('otw-toggle');
   const badge = document.getElementById('otw-badge');
   const floatingBadge = document.getElementById('otw-floating-badge');
@@ -236,6 +236,40 @@ function initOTWToggle() {
     if (floatingBadge) floatingBadge.style.display = show ? '' : 'none';
     localStorage.setItem('otw-visible', show);
   });
+}*/
+
+
+// ─── OPEN TO WORK TOGGLE ──────────────────────────────────────
+function initOTWToggle() {
+    const toggle = document.getElementById('otw-toggle');
+    const badge = document.getElementById('otw-badge');
+    const floatingBadge = document.getElementById('otw-floating-badge');
+    
+    if (!toggle) return;
+
+    // Default to OFF (if no saved preference)
+    let showOTW = false;
+
+    // Restore saved state from localStorage
+    const saved = localStorage.getItem('otw-visible');
+    if (saved !== null) {
+        showOTW = saved === 'true';
+    }
+
+    // Apply initial state
+    toggle.checked = showOTW;
+    if (badge) badge.style.display = showOTW ? '' : 'none';
+    if (floatingBadge) floatingBadge.style.display = showOTW ? '' : 'none';
+
+    // Handle toggle change
+    toggle.addEventListener('change', () => {
+        const isChecked = toggle.checked;
+        
+        if (badge) badge.style.display = isChecked ? '' : 'none';
+        if (floatingBadge) floatingBadge.style.display = isChecked ? '' : 'none';
+        
+        localStorage.setItem('otw-visible', isChecked);
+    });
 }
 
 // ─── EXPERIENCE TABS ──────────────────────────────────────────
