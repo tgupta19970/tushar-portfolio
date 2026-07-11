@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tushar — Android & Flutter Developer</title>
+  <meta name="description" content="Portfolio of Tushar Gupta, a Mobile Application Developer with 4.5+ years of experience building Android & Flutter apps. 15+ apps live on the Google Play Store." />
+  <meta name="keywords" content="Android Developer, Flutter Developer, Mobile App Developer, Java, Dart, Google Play Store, Tushar Gupta" />
+  <meta name="author" content="Tushar Gupta" />
+  <meta property="og:title" content="Tushar Gupta — Android & Flutter Developer" />
+  <meta property="og:description" content="4.5+ years building mobile apps in Java & Flutter. 15+ apps in production." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ==================== SCRIPTS ==================== -->
+
+    <!-- EmailJS Script - Put this BEFORE your custom JS -->
+    <!-- EmailJS CDN -->
+    <script type="text/javascript" 
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+    <!-- Initialize EmailJS -->
+    <script>
+        (function() {
+            emailjs.init({
+                publicKey: "qvigxGVLrxfRUsEoU",   // ← MUST replace this
+            });
+            console.log("EmailJS Initialized");
+        })();
+    </script>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Tushar<span style="color:var(--accent)">.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Work Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">View My Projects</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact Me</a></li>
+        <!-- <li>
+          <a href="assets/resume.pdf" 
+            download="Tushar_Gupta_Resume.pdf" 
+            class="nav-resume-btn">
+              Download Resume
+          </a>
+        </li> -->
+
+
+        <li>
+          <a href="#" onclick="downloadResume()" class="nav-resume-btn">
+              Download Resume
+          </a>
+        </li>
+
+        <!-- <li><a href="assets/resume.pdf" download class="nav-resume-btn" data-i18n="nav.resume">Download Resume</a></li> -->
+      </ul>
+
+      <div class="nav-controls">
+        <div class="theme-switcher" role="group" aria-label="Theme switcher">
+          <button class="theme-btn" data-theme="system" title="System">Sys</button>
+          <button class="theme-btn" data-theme="light" title="Light">☀</button>
+          <button class="theme-btn active" data-theme="dark" title="Dark">🌙</button>
+        </div>
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button class="lang-btn active" data-lang="en-US">EN</button>
+          <button class="lang-btn" data-lang="en-GB">UK</button>
+          <button class="lang-btn" data-lang="hi">हि</button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#experience" data-i18n="nav.experience">Work Experience</a>
+  <a href="#projects" data-i18n="nav.projects">View My Projects</a>
+  <a href="#contact" data-i18n="nav.contact">Contact Me</a>
+  <a href="#" onclick="downloadResume()" data-i18n="nav.resume">Download Resume</a>
+  <div class="mobile-controls">
+    <div class="theme-switcher">
+      <button class="theme-btn" data-theme="system">Sys</button>
+      <button class="theme-btn" data-theme="light">☀</button>
+      <button class="theme-btn" data-theme="dark">🌙</button>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="en-US">EN</button>
+      <button class="lang-btn" data-lang="en-GB">UK</button>
+      <button class="lang-btn" data-lang="hi">हि</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-glow-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <!-- "Open to Work" badge — toggleable -->
+        <div class="hero-badge" id="otw-badge">
+          <span class="badge-dot"></span>
+          Available for new opportunities
+        </div>
+
+        <h1 data-i18n="hero.greeting">Hi, I'm Tushar</h1>
+        <div class="hero-subtitle" id="hero-subtitle" aria-live="polite">Android &amp; Flutter Developer</div>
+
+        <p class="hero-intro" data-i18n="hero.intro">
+          I design and build mobile applications that people actually rely on day to day — from Android apps in Java to cross-platform products in Flutter. Over the past 4.5+ years, I've taken products from first line of code to live releases on the Google Play Store, currently maintaining a portfolio of 15+ applications in production.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary" data-i18n="hero.btn.projects">🚀 View My Projects</a>
+          <a href="#contact" class="btn btn-outline" data-i18n="hero.btn.contact">💬 Contact Me</a>
+          
+          <a href="#" onclick="downloadResume()" class="btn btn-ghost" data-i18n="hero.btn.resume">⬇ Download Resume</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-number">4.5+</span><span class="stat-label">Years Exp.</span></div>
+          <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Live Apps</span></div>
+          <!-- <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">Platforms</span></div> -->
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-floating-badge2">✦ 15+ Apps on Play Store</div>
+        <div class="hero-photo-ring">
+          <div class="photo-inner">
+            <img src="assets/profile-hero.png" alt="Tushar Gupta — Android & Flutter Developer" />
+          </div>
+        </div>
+        <!-- Floating "Open to Work" — toggleable -->
+        <div class="hero-photo-floating-badge" id="otw-floating-badge">🟢 Open to Work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ABOUT ════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">// who am I</p>
+      <h2 class="section-title" data-i18n="about.title">About Me</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal-left">
+        <div class="about-photo-frame">
+          <img src="assets/profile-hero.png" alt="Tushar Gupta" />
+        </div>
+        <div class="about-corner-badge">
+          <span class="big">4.5+</span>
+          <span class="small">Years of Building</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal-right">
+        <p class="about-short" data-i18n="about.short">
+          Results-driven Mobile Application Developer with 4.5+ years of experience designing, building, and scaling Android (Java) and Flutter (Dart) applications.
+        </p>
+
+        <div class="about-full" id="about-full">
+          <p>I'm a mobile application developer with 4.5+ years of hands-on experience building products that span attendance tracking, sales operations, field-visit management, and content-consumption apps. My core strength is Android development in Java, where I've built and shipped several production applications from the ground up — and over the last year and a half, I've extended that into Flutter, giving me the ability to build cross-platform apps without duplicating engineering effort.</p>
+          <p>What I care about most isn't just writing code that works — it's writing code that <em>keeps working</em>. That's why a large part of my day-to-day involves Firebase Crashlytics and Performance Monitoring: catching instability before it becomes a support ticket, and understanding <em>why</em> an app slows down, not just that it did.</p>
+          <p>At Multiplier Brand Solution, I currently own and maintain 15+ live applications on the Google Play Store — which means I spend as much time thinking about release management, versioning, and backward compatibility as I do about new features. I've built RESTful API integrations that keep these apps in sync with backend systems reliably, and I lean on AI-assisted development tools to move faster without cutting corners on code quality.</p>
+          <p>I enjoy the moment a feature goes from a Jira ticket to something a real user taps on their phone — and I like being the person who's still around when something breaks in production, because that's usually where the real learning happens.</p>
+        </div>
+
+        <button class="about-readmore" id="about-readmore">Read More <span class="arrow"> ↓</span></button>
+
+        <!-- Open to Work Toggle -->
+        <div class="otw-toggle-row">
+          <span>🟢</span>
+          <span class="otw-label">Show "Open to Work" status</span>
+          <label class="toggle-switch" aria-label="Toggle open to work visibility">
+            <input type="checkbox" id="otw-toggle" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="about-info-grid">
+          <a href="mailto:tusharkansal09451@gmail.com" class="info-chip">
+            <span class="icon">📧</span><span>tusharkansal09451@gmail.com</span>
+          </a>
+          <a href="tel:+919540380443" class="info-chip">
+            <span class="icon">📱</span><span>+91 9540380443</span>
+          </a>
+          <a href="https://www.linkedin.com/in/tushar-gupta-272192215/" target="_blank" rel="noopener" class="info-chip">
+            <span class="icon">🔗</span><span>LinkedIn Profile</span>
+          </a>
+          <a href="https://github.com/tushar19970" target="_blank" rel="noopener" class="info-chip">
+            <span class="icon">💻</span><span>GitHub Profile</span>
+          </a>
+          <div class="info-chip"><span class="icon">📍</span><span>India</span></div>
+          <div class="info-chip"><span class="icon">🎯</span><span>Open to Opportunities</span></div>
+        </div>
+
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;">
+          <a href="#contact" class="btn btn-primary">💬 Get In Touch</a>
+          <a href="#" onclick="downloadResume()" class="btn btn-ghost">⬇ Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ WORK EXPERIENCE ════════════ -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">// my journey</p>
+      <h2 class="section-title" data-i18n="exp.title">Work Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- Tab Switcher -->
+    <div class="exp-tabs reveal">
+      <button class="exp-tab active" data-tab="multiplier">Multiplier Brand Solution</button>
+      <button class="exp-tab" data-tab="a2d">A2D Innovations (Internship)</button>
+    </div>
+
+    <!-- Panel 1: Multiplier -->
+    <div class="exp-panel active" id="exp-panel-multiplier">
+      <div class="exp-main-card reveal">
+        <div class="exp-card-header">
+          <div class="exp-company-logo">📱</div>
+          <div class="exp-header-info">
+            <div class="exp-role-title">Mobile App Developer</div>
+            <div class="exp-company-name">Multiplier Brand Solution</div>
+            <div class="exp-meta">
+              <span class="exp-badge exp-badge-period">📅 Jan 2022</span>
+              <span class="exp-badge exp-badge-current"><span class="exp-badge-dot"></span> Currently Working</span>
+              <span class="exp-badge exp-badge-tech">Android · Flutter</span>
+              <span class="exp-badge exp-badge-tech">15+ Live Apps</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-context-block">
+          <p>At Multiplier Brand Solution, I work as the primary mobile developer responsible for a growing suite of business applications — covering attendance management, sales tracking, field visits, retail operations, and competitive performance tracking. My role involves owning multiple products in parallel, which has sharpened how I think about reusable architecture, release discipline, and cross-app consistency.</p>
+        </div>
+
+        <div class="exp-body">
+          <div class="exp-section-label">Responsibilities</div>
+          <button class="exp-toggle" data-target="exp-details-multiplier">
+            Show Details <span>▼</span>
+          </button>
+
+          <div id="exp-details-multiplier" style="display:none">
+            <ul class="exp-bullets">
+              <li>Developed and maintained 15+ production mobile applications using Android (Java) and Flutter (Dart), serving a growing user base across different business functions.</li>
+              <li>Built and shipped Prism Plus in Android (Java + XML) — covering Attendance Management, Sales Management System, and a Visit Tracker.</li>
+              <li>Built and shipped MultiSense in Flutter (Dart) — featuring optimized Attendance Management, analytics-driven Sales System, and a real-time Leaderboard for competitive sales events.</li>
+              <li>Built V-Ratt and Field Insight in Android (Java + XML) supporting retail and on-ground field-visit workflows.</li>
+              <li>Designed Retail Spark and Storm in Flutter (Dart), extending the product suite to cross-platform delivery.</li>
+              <li>Integrated <strong>RESTful APIs and JSON data pipelines</strong> connecting each app to backend services, improving data consistency across the suite.</li>
+              <li>Full ownership of <strong>Google Play Store releases</strong> — versioning, staged rollouts, release notes, and compliance — for all 15+ apps.</li>
+              <li>Implemented <strong>Firebase Analytics, Crashlytics, and Performance Monitoring</strong> to catch instability before it impacts users at scale.</li>
+              <li>Adopted <strong>AI-assisted development tools</strong> to speed up boilerplate and keep code review cycles tighter.</li>
+              <li>Collaborated with cross-functional teams on testing, debugging, and code review to maintain consistent release quality.</li>
+            </ul>
+          </div>
+
+          <div class="exp-apps-label">Apps Built & Maintained</div>
+          <div class="exp-apps-grid">
+            <div class="app-chip"><span class="app-name">Prism Plus</span><span class="app-tech">Android · Java</span></div>
+            <div class="app-chip"><span class="app-name">MultiSense</span><span class="app-tech">Flutter · Dart</span></div>
+            <div class="app-chip"><span class="app-name">V-Ratt</span><span class="app-tech">Android · Java</span></div>
+            <div class="app-chip"><span class="app-name">Field Insight</span><span class="app-tech">Android · Java</span></div>
+            <div class="app-chip"><span class="app-name">Retail Spark</span><span class="app-tech">Flutter · Dart</span></div>
+            <div class="app-chip"><span class="app-name">Storm</span><span class="app-tech">Flutter · Dart</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: A2D -->
+    <div class="exp-panel" id="exp-panel-a2d">
+      <div class="exp-main-card reveal">
+        <div class="exp-card-header">
+          <div class="exp-company-logo" style="background:linear-gradient(135deg,var(--accent),#059669)">💼</div>
+          <div class="exp-header-info">
+            <div class="exp-role-title">Back End Developer (Intern)</div>
+            <div class="exp-company-name">A2D Innovations Private Limited</div>
+            <div class="exp-meta">
+              <span class="exp-badge exp-badge-period">📅 Nov 2021 – Jan 2022</span>
+              <span class="exp-badge exp-badge-tech">Backend · Git</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-context-block">
+          <p>Before moving into mobile development full-time, I spent two months at A2D Innovations getting hands-on with backend engineering — which gave me a useful perspective: understanding what a mobile app actually asks of a server helped me become a better mobile developer later.</p>
+        </div>
+
+        <div class="exp-body">
+          <div class="exp-section-label">What I did</div>
+          <ul class="exp-bullets">
+            <li>Completed a two-month internship contributing to a <strong>live production project</strong> within a collaborative engineering team.</li>
+            <li>Gained hands-on experience in <strong>backend development practices</strong>, version control (Git), and team-based delivery workflows.</li>
+            <li>Built foundational understanding of <strong>client-server architecture</strong> that later informed my mobile API integration work.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SKILLS (after Experience) ════════════ -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <p class="section-label">// what I work with</p>
+      <h2 class="section-title" data-i18n="skills.title">Skills &amp; Technologies</h2>
+      <div class="section-divider" style="margin:0 auto 0"></div>
+    </div>
+
+    <div class="skills-layout">
+      <!-- LEFT: Skill bar charts -->
+      <div class="skills-chart-section reveal-left">
+        <div class="skills-chart-title">Core Skill Levels</div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">Android Development (Java)</span>
+            <span class="skill-bar-pct">92%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">Flutter / Dart</span>
+            <span class="skill-bar-pct">80%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">Firebase Suite</span>
+            <span class="skill-bar-pct">85%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">REST API Integration</span>
+            <span class="skill-bar-pct">88%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">Google Play Store Deployment</span>
+            <span class="skill-bar-pct">95%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">UI/UX — Material Design</span>
+            <span class="skill-bar-pct">82%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+
+        <div class="skill-bar-item">
+          <div class="skill-bar-header">
+            <span class="skill-bar-name">SQLite / Local Storage</span>
+            <span class="skill-bar-pct">78%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Category tags -->
+      <div class="skills-tags-section reveal-right">
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">⌨</div>
+            <span class="skill-cat-name" data-i18n="skills.languages">Languages</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Dart</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">📱</div>
+            <span class="skill-cat-name" data-i18n="skills.mobile">Mobile Development</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Android SDK</span>
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">Cross-Platform</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🛠</div>
+            <span class="skill-cat-name" data-i18n="skills.frameworks">Frameworks &amp; Tools</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Android Studio</span>
+            <span class="skill-tag">Gradle</span>
+            <span class="skill-tag">Material Design</span>
+            <span class="skill-tag">XML Layouts</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🌐</div>
+            <span class="skill-cat-name" data-i18n="skills.api">API &amp; Networking</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">JSON</span>
+            <span class="skill-tag">Volley</span>
+            <span class="skill-tag">Third-Party Libraries</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🔥</div>
+            <span class="skill-cat-name" data-i18n="skills.firebase">Firebase</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Analytics</span>
+            <span class="skill-tag">Crashlytics</span>
+            <span class="skill-tag">Performance</span>
+            <span class="skill-tag">In-App Messaging</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon">🚀</div>
+            <span class="skill-cat-name" data-i18n="skills.deployment">Deployment</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Google Play Store</span>
+            <span class="skill-tag">Staged Rollouts</span>
+            <span class="skill-tag">Release Management</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PROJECTS ════════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <p class="section-label">// what I've built</p>
+      <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+      <div class="section-divider" style="margin:0 auto 0"></div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal" id="quickbuzz-card" role="button" tabindex="0" aria-label="View QuickBuzz project">
+        <!-- Image strip: 3 images visible on card front -->
+        <div class="project-img-strip" style="position:relative">
+          <img src="assets/qb-home.png" alt="QuickBuzz home screen" />
+          <img src="assets/qb-category.png" alt="QuickBuzz category view" />
+          <img src="assets/qb-detail.png" alt="QuickBuzz article detail" />
+          <div class="strip-overlay"></div>
+          <div class="project-tech-tags">
+            <span class="project-tech-tag">Flutter</span>
+            <span class="project-tech-tag">REST API</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">QuickBuzz</div>
+          <div class="project-tagline">Short News, Smart Swipe</div>
+          <p class="project-desc">
+            A short-form Flutter news app with REST API integration, swipeable category-wise news cards, search functionality, and bookmarking — built for speed and simplicity.
+          </p>
+          <button class="btn btn-primary project-view-btn" data-i18n="projects.view">👁 View Project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Modal -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title-text">QuickBuzz</div>
+        <div style="font-size:0.8rem;color:var(--muted);margin-top:0.15rem">Flutter · Short-form News App</div>
+      </div>
+      <button class="modal-close" id="modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Carousel — 5 slides -->
+      <div class="carousel-wrap">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="assets/qb-home.png" alt="QuickBuzz home feed" /></div>
+          <div class="carousel-slide"><img src="assets/qb-category.png" alt="QuickBuzz categories" /></div>
+          <div class="carousel-slide"><img src="assets/qb-detail.png" alt="QuickBuzz article detail" /></div>
+          <div class="carousel-slide"><img src="assets/qb-search.png" alt="QuickBuzz search" /></div>
+          <div class="carousel-slide"><img src="assets/quickbuzz-screenshot.png" alt="QuickBuzz overview" /></div>
+        </div>
+        <button class="carousel-btn carousel-prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn carousel-next" aria-label="Next">›</button>
+        <div class="carousel-dots">
+          <button class="carousel-dot active"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+        </div>
+      </div>
+
+      <p style="color:var(--muted);font-size:0.93rem;line-height:1.8;margin-bottom:1.4rem">
+        QuickBuzz is a short-form news app built to make catching up on headlines effortless. Built in Flutter with REST API integration, it organizes content into swipeable, category-wise cards — browse by topic, search for something specific, or bookmark a story for later. Built around clean architecture and reusable components for easy expansion.
+      </p>
+
+      <div class="modal-features">
+        <h4>✦ Key Features</h4>
+        <ul class="feature-list">
+          <li>Category-wise news browsing (Tech, Sports, World & more)</li>
+          <li>Search functionality across all articles</li>
+          <li>Bookmarking for reading later</li>
+          <li>Swipe-based navigation between stories</li>
+          <li>REST API–driven live content</li>
+          <li>Clean Flutter architecture with reusable components</li>
+        </ul>
+      </div>
+
+      <div style="display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:1.5rem">
+        <span class="skill-tag">Flutter</span>
+        <span class="skill-tag">Dart</span>
+        <span class="skill-tag">REST API</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">Material Design</span>
+      </div>
+
+      <div class="modal-actions">
+        <a href="assets/quickbuzz.apk" download class="btn btn-primary" data-i18n="projects.download.apk">⬇ Download APK</a>
+        <button class="btn btn-ghost" onclick="closeModal()" data-i18n="projects.close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ RECOGNITION ════════════ -->
+<section id="recognition">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">// accolades</p>
+      <h2 class="section-title" data-i18n="rec.title">Recognition &amp; Awards</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <span class="award-icon">🏆</span>
+        <div class="award-period">Jul – Sep 2023</div>
+        <div class="award-title">Best Suggestion Award</div>
+        <p class="award-desc">Awarded for contributing innovative ideas and process improvements that enhanced team efficiency and business outcomes — recognition for looking beyond assigned tickets and proposing changes that made the whole team's workflow smoother.</p>
+      </div>
+      <div class="award-card reveal">
+        <span class="award-icon">🏆</span>
+        <div class="award-period">Mar 2026</div>
+        <div class="award-title">Excellence in Execution Award</div>
+        <p class="award-desc">Recognized for disciplined execution, seamless project delivery, and exceptional time management — awarded for consistently shipping on schedule while holding a high bar for quality across every release.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ EDUCATION ════════════ -->
+<section id="education">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <p class="section-label">// background</p>
+      <h2 class="section-title" data-i18n="edu.title">Education</h2>
+      <div class="section-divider" style="margin:0 auto 0"></div>
+    </div>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+        <div class="edu-institution">Indira Gandhi National Open University (IGNOU)</div>
+        <div class="edu-period">2022 – 2025</div>
+        <div class="edu-summary">
+          A 3-year undergraduate programme covering software engineering, database management, and computer applications. Pursued alongside full-time professional work to broaden theoretical foundations in computer science.
+        </div>
+        <div class="edu-tags">
+          <span class="edu-tag">Software Engineering</span>
+          <span class="edu-tag">SQL Databases</span>
+          <span class="edu-tag">Computer Applications</span>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-icon">💡</div>
+        <div class="edu-degree">Software Programming Diploma</div>
+        <div class="edu-institution">NavGurukul Organization</div>
+        <div class="edu-period">2020 – 2021</div>
+        <div class="edu-summary">
+          An intensive residential coding programme focused on practical software development skills. NavGurukul's hands-on curriculum — covering programming fundamentals, problem-solving, and collaborative engineering — was the direct launchpad for my professional developer career.
+        </div>
+        <div class="edu-tags">
+          <span class="edu-tag">Programming Fundamentals</span>
+          <span class="edu-tag">Problem Solving</span>
+          <span class="edu-tag">Team Collaboration</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CONTACT ════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <p class="section-label">// get in touch</p>
+      <h2 class="section-title" data-i18n="contact.title">Let's Build Something Together</h2>
+      <p style="color:var(--muted);max-width:540px;margin:0 auto" data-i18n="contact.subtext">
+        Have a project in mind, a role you think I'd be a fit for, or just want to talk mobile development? Send a message and I'll get back to you directly.
+      </p>
+      <div class="section-divider" style="margin:1.4rem auto 0"></div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info column -->
+      <div class="reveal-left">
+        <div class="contact-info-title">Connect with me</div>
+        <div class="contact-links">
+          <a href="mailto:tusharkansal09451@gmail.com" class="contact-link-item">
+            <div class="link-icon">📧</div>
+            <div>
+              <div style="font-weight:600;color:var(--text);font-size:0.85rem">Email</div>
+              <div style="font-size:0.8rem">tusharkansal09451@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+919540380443" class="contact-link-item">
+            <div class="link-icon">📱</div>
+            <div>
+              <div style="font-weight:600;color:var(--text);font-size:0.85rem">Phone</div>
+              <div style="font-size:0.8rem">+91 9540380443</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/tushar-gupta-272192215/" target="_blank" rel="noopener" class="contact-link-item">
+            <div class="link-icon">🔗</div>
+            <div>
+              <div style="font-weight:600;color:var(--text);font-size:0.85rem">LinkedIn</div>
+              <div style="font-size:0.8rem">tushar-gupta-272192215</div>
+            </div>
+          </a>
+          <a href="https://github.com/tushar19970" target="_blank" rel="noopener" class="contact-link-item">
+            <div class="link-icon">💻</div>
+            <div>
+              <div style="font-weight:600;color:var(--text);font-size:0.85rem">GitHub</div>
+              <div style="font-size:0.8rem">github.com/tushar19970</div>
+            </div>
+          </a>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.1rem;">
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem">
+            <span style="width:9px;height:9px;background:var(--success);border-radius:50%;box-shadow:0 0 8px var(--success);animation:blink 1.5s infinite;display:inline-block"></span>
+            <span style="font-weight:700;font-size:0.88rem;color:var(--text)">Available for Work</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);line-height:1.6">Open to full-time, contract, and freelance opportunities in mobile development.</p>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="reveal-right">
+        <form id="contact-form" class="contact-form" novalidate>
+
+          <!-- Row 1: Name + Phone -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">Your Name *</label>
+              <input type="text" id="contact-name" class="form-control" placeholder="John Doe" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="contact-phone">Phone (optional)</label>
+              <input type="tel" id="contact-phone" class="form-control" placeholder="+91 98765 43210" autocomplete="tel" />
+            </div>
+          </div>
+
+          <!-- Row 2: Email + Company -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-email">Your Email *</label>
+              <input type="email" id="contact-email" class="form-control" placeholder="john@example.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="contact-company">Company / Organization</label>
+              <input type="text" id="contact-company" class="form-control" placeholder="Acme Corp (optional)" autocomplete="organization" />
+            </div>
+          </div>
+
+          <!-- Subject dropdown -->
+          <div class="form-group">
+            <label for="contact-subject">Subject / Reason</label>
+            <select id="contact-subject" class="form-control">
+              <option value="" disabled selected>Select a reason…</option>
+              <option value="Job Opportunity">💼 Job Opportunity</option>
+              <option value="Freelance Project">🚀 Freelance Project</option>
+              <option value="Collaboration">🤝 Collaboration</option>
+              <option value="Just Saying Hi">👋 Just Saying Hi</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" class="form-control" placeholder="Tell me about your project or opportunity..." required rows="5"></textarea>
+          </div>
+
+          <div class="form-submit-wrap">
+            <button type="submit" class="btn btn-primary" id="contact-submit">
+              🤝 <span>Contact Me</span>
+            </button>
+            <span id="form-feedback"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER — REDESIGNED ════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">Tushar<span style="color:var(--accent)">.</span></div>
+        <p class="footer-tagline">Android & Flutter Developer building mobile apps that people rely on every day.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919540380443" target="_blank" rel="noopener" class="social-icon whatsapp" title="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/tushargupta9540" target="_blank" rel="noopener" class="social-icon instagram" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://twitter.com/Tushar34277686" target="_blank" rel="noopener" class="social-icon twitter" title="Twitter / X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/tushar-gupta-272192215/" target="_blank" rel="noopener" class="social-icon linkedin" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/tushar19970" target="_blank" rel="noopener" class="social-icon github" title="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-col-links">
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Work Experience</a></li>
+          <li><a href="#skills" data-i18n="skills.title">Skills</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#recognition">Recognition</a></li>
+          <li><a href="#education" data-i18n="edu.title">Education</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <div class="footer-col-title">Get In Touch</div>
+        <ul class="footer-col-links">
+          <li><a href="mailto:tusharkansal09451@gmail.com">📧 tusharkansal09451@gmail.com</a></li>
+          <li><a href="tel:+919540380443">📱 +91 9540380443</a></li>
+          <li><a href="https://www.linkedin.com/in/tushar-gupta-272192215/" target="_blank">🔗 LinkedIn</a></li>
+          <li><a href="https://github.com/tushar19970" target="_blank">💻 GitHub</a></li>
+          <li><a href="#" onclick="downloadResume()" data-i18n="nav.resume">⬇ Download Resume</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        Built with <span class="heart">♥</span> by Tushar &nbsp;·&nbsp;
+        © <span id="footer-year"></span> &nbsp;All rights reserved.
+      </p>
+      <button class="footer-back-top" id="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ↑ Back to top
+      </button>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════ AI CHATBOT ════════════ -->
+<div id="chat-bubble">
+  <button class="chat-fab" id="chat-fab" aria-label="Open AI Assistant" aria-expanded="false">
+    🤖
+    <span class="chat-notif"></span>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="complementary" aria-label="AI Assistant">
+    <div class="chat-header">
+      <div class="chat-header-gradient">
+        <div class="chat-header-top">
+          <div class="chat-avatar-lg">🤖</div>
+          <div class="chat-header-text">
+            <div class="chat-ai-name" data-i18n="chat.title">AI Assistant</div>
+            <div class="chat-ai-desc" data-i18n="chat.subtitle">Ask me anything about Tushar</div>
+          </div>
+          <button class="chat-close-btn" id="chat-close" aria-label="Close">✕</button>
+        </div>
+        <div class="chat-status">
+          <span class="chat-status-dot"></span>
+          Online · Powered by smart Q&amp;A
+        </div>
+      </div>
+      <div class="chat-suggestions">
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('What are Tushar\'s skills?')">🛠 Skills</button>
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('What apps has he built?')">📱 Apps</button>
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('How to contact him?')">📬 Contact</button>
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('Tell me about his experience')">💼 Experience</button>
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('Is he open to work?')">🟢 Availability</button>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg bot">
+        <div class="chat-avatar-sm">🤖</div>
+        <div>
+          <div class="chat-bubble-msg" data-i18n="chat.welcome">👋 Hi! I'm Tushar's AI assistant. Ask me about his skills, projects, experience, or anything else about him!</div>
+          <div class="chat-time">Just now</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chat message" maxlength="300" data-i18n="chat.placeholder" />
+      <button id="chat-send" aria-label="Send message">➤</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  function sendQuickMsg(msg) {
+    const input = document.getElementById('chat-input');
+    const panel = document.getElementById('chat-panel');
+    if (!panel.classList.contains('open')) panel.classList.add('open');
+    if (input) { input.value = msg; document.getElementById('chat-send').click(); }
+  }
+
+  document.getElementById('quickbuzz-card')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') openModal();
+  });
+</script>
+</body>
+</html>
