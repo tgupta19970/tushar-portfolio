@@ -112,12 +112,6 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-text">
-        <!-- "Open to Work" badge — toggleable -->
-        <div class="hero-badge" id="otw-badge">
-          <span class="badge-dot"></span>
-          Available for new opportunities
-        </div>
-
         <h1 data-i18n="hero.greeting">Hi, I'm Tushar</h1>
         <div class="hero-subtitle" id="hero-subtitle" aria-live="polite">Android &amp; Flutter Developer</div>
 
@@ -146,8 +140,6 @@
             <img src="assets/profile-hero.png" alt="Tushar Gupta — Android & Flutter Developer" />
           </div>
         </div>
-        <!-- Floating "Open to Work" — toggleable -->
-        <div class="hero-photo-floating-badge" id="otw-floating-badge">🟢 Open to Work</div>
       </div>
     </div>
   </div>
@@ -187,16 +179,6 @@
 
         <button class="about-readmore" id="about-readmore">Read More <span class="arrow"> ↓</span></button>
 
-        <!-- Open to Work Toggle -->
-        <div class="otw-toggle-row">
-          <span>🟢</span>
-          <span class="otw-label">Show "Open to Work" status</span>
-          <label class="toggle-switch" aria-label="Toggle open to work visibility">
-            <input type="checkbox" id="otw-toggle" checked />
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
         <div class="about-info-grid">
           <a href="mailto:tusharkansal09451@gmail.com" class="info-chip">
             <span class="icon">📧</span><span>tusharkansal09451@gmail.com</span>
@@ -211,7 +193,6 @@
             <span class="icon">💻</span><span>GitHub Profile</span>
           </a>
           <div class="info-chip"><span class="icon">📍</span><span>India</span></div>
-          <div class="info-chip"><span class="icon">🎯</span><span>Open to Opportunities</span></div>
         </div>
 
         <div style="display:flex;gap:0.65rem;flex-wrap:wrap;">
@@ -280,14 +261,14 @@
             </ul>
           </div>
 
-          <div class="exp-apps-label">Apps Built & Maintained</div>
+          <div class="exp-apps-label">Apps Built & Maintained <span style="font-size:0.75rem;font-weight:400;color:var(--muted);text-transform:none;letter-spacing:normal;">(Click any app to view details &amp; screenshots)</span></div>
           <div class="exp-apps-grid">
-            <div class="app-chip"><span class="app-name">Prism Plus</span><span class="app-tech">Android · Java</span></div>
-            <div class="app-chip"><span class="app-name">MultiSense</span><span class="app-tech">Flutter · Dart</span></div>
-            <div class="app-chip"><span class="app-name">V-Ratt</span><span class="app-tech">Android · Java</span></div>
-            <div class="app-chip"><span class="app-name">Field Insight</span><span class="app-tech">Android · Java</span></div>
-            <div class="app-chip"><span class="app-name">Retail Spark</span><span class="app-tech">Flutter · Dart</span></div>
-            <div class="app-chip"><span class="app-name">Storm</span><span class="app-tech">Flutter · Dart</span></div>
+            <div class="app-chip" data-app="prism" onclick="openAppModal('prism')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('prism')" role="button" tabindex="0"><span class="app-name">Prism Plus</span><span class="app-tech">Android · Java</span><span class="app-chip-hint">View details →</span></div>
+            <div class="app-chip" data-app="multisense" onclick="openAppModal('multisense')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('multisense')" role="button" tabindex="0"><span class="app-name">MultiSense</span><span class="app-tech">Flutter · Dart</span><span class="app-chip-hint">View details →</span></div>
+            <div class="app-chip" data-app="vratt" onclick="openAppModal('vratt')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('vratt')" role="button" tabindex="0"><span class="app-name">V-Ratt</span><span class="app-tech">Android · Java</span><span class="app-chip-hint">View details →</span></div>
+            <div class="app-chip" data-app="fieldinsight" onclick="openAppModal('fieldinsight')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('fieldinsight')" role="button" tabindex="0"><span class="app-name">Field Insight</span><span class="app-tech">Android · Java</span><span class="app-chip-hint">View details →</span></div>
+            <div class="app-chip" data-app="retailspark" onclick="openAppModal('retailspark')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('retailspark')" role="button" tabindex="0"><span class="app-name">Retail Spark</span><span class="app-tech">Flutter · Dart</span><span class="app-chip-hint">View details →</span></div>
+            <div class="app-chip" data-app="storm" onclick="openAppModal('storm')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('storm')" role="button" tabindex="0"><span class="app-name">Storm</span><span class="app-tech">Flutter · Dart</span><span class="app-chip-hint">View details →</span></div>
           </div>
         </div>
       </div>
@@ -488,7 +469,7 @@
     </div>
 
     <div class="projects-grid">
-      <div class="project-card reveal" id="quickbuzz-card" role="button" tabindex="0" aria-label="View QuickBuzz project">
+      <div class="project-card reveal" id="quickbuzz-card" onclick="openAppModal('quickbuzz')" onkeydown="if(event.key==='Enter'||event.key===' ')openAppModal('quickbuzz')" role="button" tabindex="0" aria-label="View QuickBuzz project">
         <!-- Image strip: 3 images visible on card front -->
         <div class="project-img-strip" style="position:relative">
           <img src="assets/qb-home.png" alt="QuickBuzz home screen" />
@@ -506,27 +487,27 @@
           <p class="project-desc">
             A short-form Flutter news app with REST API integration, swipeable category-wise news cards, search functionality, and bookmarking — built for speed and simplicity.
           </p>
-          <button class="btn btn-primary project-view-btn" data-i18n="projects.view">👁 View Project</button>
+          <button type="button" class="btn btn-primary project-view-btn" onclick="event.stopPropagation();openAppModal('quickbuzz')" data-i18n="projects.view">👁 View Project</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Project Modal -->
+<!-- Project & App Details Modal -->
 <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
   <div class="modal-box">
     <div class="modal-header">
       <div>
         <div class="modal-title" id="modal-title-text">QuickBuzz</div>
-        <div style="font-size:0.8rem;color:var(--muted);margin-top:0.15rem">Flutter · Short-form News App</div>
+        <div style="font-size:0.8rem;color:var(--muted);margin-top:0.15rem" id="modal-subtitle-text">Flutter · Short-form News App</div>
       </div>
       <button class="modal-close" id="modal-close" aria-label="Close modal">✕</button>
     </div>
     <div class="modal-body">
       <!-- Carousel — 5 slides -->
       <div class="carousel-wrap">
-        <div class="carousel-track">
+        <div class="carousel-track" id="modal-carousel-track">
           <div class="carousel-slide"><img src="assets/qb-home.png" alt="QuickBuzz home feed" /></div>
           <div class="carousel-slide"><img src="assets/qb-category.png" alt="QuickBuzz categories" /></div>
           <div class="carousel-slide"><img src="assets/qb-detail.png" alt="QuickBuzz article detail" /></div>
@@ -535,7 +516,7 @@
         </div>
         <button class="carousel-btn carousel-prev" aria-label="Previous">‹</button>
         <button class="carousel-btn carousel-next" aria-label="Next">›</button>
-        <div class="carousel-dots">
+        <div class="carousel-dots" id="modal-carousel-dots">
           <button class="carousel-dot active"></button>
           <button class="carousel-dot"></button>
           <button class="carousel-dot"></button>
@@ -544,13 +525,13 @@
         </div>
       </div>
 
-      <p style="color:var(--muted);font-size:0.93rem;line-height:1.8;margin-bottom:1.4rem">
+      <p style="color:var(--muted);font-size:0.93rem;line-height:1.8;margin-bottom:1.4rem" id="modal-desc-text">
         QuickBuzz is a short-form news app built to make catching up on headlines effortless. Built in Flutter with REST API integration, it organizes content into swipeable, category-wise cards — browse by topic, search for something specific, or bookmark a story for later. Built around clean architecture and reusable components for easy expansion.
       </p>
 
       <div class="modal-features">
         <h4>✦ Key Features</h4>
-        <ul class="feature-list">
+        <ul class="feature-list" id="modal-features-list">
           <li>Category-wise news browsing (Tech, Sports, World & more)</li>
           <li>Search functionality across all articles</li>
           <li>Bookmarking for reading later</li>
@@ -560,7 +541,7 @@
         </ul>
       </div>
 
-      <div style="display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:1.5rem">
+      <div style="display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:1.5rem" id="modal-tech-tags">
         <span class="skill-tag">Flutter</span>
         <span class="skill-tag">Dart</span>
         <span class="skill-tag">REST API</span>
@@ -568,8 +549,8 @@
         <span class="skill-tag">Material Design</span>
       </div>
 
-      <div class="modal-actions">
-        <a href="assets/quickbuzz.apk" download class="btn btn-primary" data-i18n="projects.download.apk">⬇ Download APK</a>
+      <div class="modal-actions" id="modal-actions">
+        <a href="assets/quickbuzz.apk" download class="btn btn-primary" id="modal-download-btn" data-i18n="projects.download.apk">⬇ Download APK</a>
         <button class="btn btn-ghost" onclick="closeModal()" data-i18n="projects.close">Close</button>
       </div>
     </div>
@@ -691,15 +672,6 @@
             </div>
           </a>
         </div>
-
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.1rem;">
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem">
-            <span style="width:9px;height:9px;background:var(--success);border-radius:50%;box-shadow:0 0 8px var(--success);animation:blink 1.5s infinite;display:inline-block"></span>
-            <span style="font-weight:700;font-size:0.88rem;color:var(--text)">Available for Work</span>
-          </div>
-          <p style="font-size:0.8rem;color:var(--muted);line-height:1.6">Open to full-time, contract, and freelance opportunities in mobile development.</p>
-        </div>
-        
       </div>
 
       <!-- Form column -->
@@ -854,7 +826,7 @@
         <button class="chat-suggestion-chip" onclick="sendQuickMsg('What apps has he built?')">📱 Apps</button>
         <button class="chat-suggestion-chip" onclick="sendQuickMsg('How to contact him?')">📬 Contact</button>
         <button class="chat-suggestion-chip" onclick="sendQuickMsg('Tell me about his experience')">💼 Experience</button>
-        <button class="chat-suggestion-chip" onclick="sendQuickMsg('Is he open to work?')">🟢 Availability</button>
+        <button class="chat-suggestion-chip" onclick="sendQuickMsg('What is his education?')">🎓 Education</button>
       </div>
     </div>
 

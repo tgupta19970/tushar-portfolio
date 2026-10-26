@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initHamburger();
   initAboutReadMore();
-  initOTWToggle();
   initExpTabs();
   initExpToggles();
   initSkillBars();
@@ -215,63 +214,6 @@ function initAboutReadMore() {
   });
 }
 
-// ─── OPEN TO WORK TOGGLE ──────────────────────────────────────
-/*function initOTWToggle() {
-  const toggle = document.getElementById('otw-toggle');
-  const badge = document.getElementById('otw-badge');
-  const floatingBadge = document.getElementById('otw-floating-badge');
-  if (!toggle) return;
-
-  // Restore saved state
-  const saved = localStorage.getItem('otw-visible');
-  if (saved === 'false') {
-    toggle.checked = false;
-    if (badge) badge.style.display = 'none';
-    if (floatingBadge) floatingBadge.style.display = 'none';
-  }
-
-  toggle.addEventListener('change', () => {
-    const show = toggle.checked;
-    if (badge) badge.style.display = show ? '' : 'none';
-    if (floatingBadge) floatingBadge.style.display = show ? '' : 'none';
-    localStorage.setItem('otw-visible', show);
-  });
-}*/
-
-
-// ─── OPEN TO WORK TOGGLE ──────────────────────────────────────
-function initOTWToggle() {
-    const toggle = document.getElementById('otw-toggle');
-    const badge = document.getElementById('otw-badge');
-    const floatingBadge = document.getElementById('otw-floating-badge');
-    
-    if (!toggle) return;
-
-    // Default to OFF (if no saved preference)
-    let showOTW = false;
-
-    // Restore saved state from localStorage
-    const saved = localStorage.getItem('otw-visible');
-    if (saved !== null) {
-        showOTW = saved === 'true';
-    }
-
-    // Apply initial state
-    toggle.checked = showOTW;
-    if (badge) badge.style.display = showOTW ? '' : 'none';
-    if (floatingBadge) floatingBadge.style.display = showOTW ? '' : 'none';
-
-    // Handle toggle change
-    toggle.addEventListener('change', () => {
-        const isChecked = toggle.checked;
-        
-        if (badge) badge.style.display = isChecked ? '' : 'none';
-        if (floatingBadge) floatingBadge.style.display = isChecked ? '' : 'none';
-        
-        localStorage.setItem('otw-visible', isChecked);
-    });
-}
-
 // ─── EXPERIENCE TABS ──────────────────────────────────────────
 function initExpTabs() {
   const tabs = document.querySelectorAll('.exp-tab');
@@ -317,50 +259,328 @@ function initSkillBars() {
   bars.forEach(bar => obs.observe(bar));
 }
 
-// ─── PROJECT MODAL ────────────────────────────────────────────
+// ─── APPS DATA STORE (For Experience Modal & Projects) ─────────
+const APPS_DATA = {
+  quickbuzz: {
+    title: "QuickBuzz",
+    subtitle: "Flutter · Short-form News App",
+    desc: "QuickBuzz is a short-form news app built to make catching up on headlines effortless. Built in Flutter with REST API integration, it organizes content into swipeable, category-wise cards — browse by topic, search for something specific, or bookmark a story for later. Built around clean architecture and reusable components for easy expansion.",
+    features: [
+      "Category-wise news browsing (Tech, Sports, World & more)",
+      "Search functionality across all articles",
+      "Bookmarking for reading later",
+      "Swipe-based navigation between stories",
+      "REST API–driven live content",
+      "Clean Flutter architecture with reusable components"
+    ],
+    tech: ["Flutter", "Dart", "REST API", "JSON", "Material Design"],
+    downloadApk: "assets/quickbuzz.apk",
+    images: [
+      { src: "assets/qb-home.png", alt: "QuickBuzz home feed" },
+      { src: "assets/qb-category.png", alt: "QuickBuzz categories" },
+      { src: "assets/qb-detail.png", alt: "QuickBuzz article detail" },
+      { src: "assets/qb-search.png", alt: "QuickBuzz search" },
+      { src: "assets/quickbuzz-screenshot.png", alt: "QuickBuzz overview" }
+    ]
+  },
+  prism: {
+    title: "Prism Plus",
+    subtitle: "Android (Java + XML) · Enterprise Operations Suite",
+    desc: "Prism Plus is a high-volume, multi-purpose enterprise mobility application deployed across nationwide teams. It unifies workforce attendance tracking, a complete sales management system, and field-visit audit logging into a fast, responsive native Android experience designed for maximum reliability in low-connectivity environments.",
+    features: [
+      "Real-time Attendance Management with biometric/timestamp verification, reducing manual logging errors by 40%",
+      "Comprehensive Sales Management pipeline: order processing, deal stages, and territory performance",
+      "On-ground Visit Tracker ensuring geotagged visits and verifiable store check-ins",
+      "Offline SQLite persistence with resilient auto-sync when network connectivity resumes",
+      "Seamless RESTful API integration with JSON data pipelines connecting directly to enterprise ERPs",
+      "Integrated Firebase Crashlytics & Performance Monitoring for proactive bug resolution"
+    ],
+    tech: ["Android SDK", "Java", "XML Layouts", "SQLite", "RESTful APIs", "Volley", "Firebase Crashlytics", "Google Play Store"],
+    downloadApk: null,
+    images: [
+      { src: "assets/prism1.jpg", alt: "Prism Plus - Attendance Management Dashboard" },
+      { src: "assets/prism2.jpg", alt: "Prism Plus - Live Attendance & Team Feed" },
+      { src: "assets/prism3.jpg", alt: "Prism Plus - Sales Performance & Pipeline" },
+      { src: "assets/prism4.jpg", alt: "Prism Plus - Store Visit Tracking Screen" },
+      { src: "assets/prism5.jpg", alt: "Prism Plus - Reports & Offline Sync Status" }
+    ]
+  },
+  multisense: {
+    title: "MultiSense",
+    subtitle: "Flutter (Dart) · Enterprise Sales & Attendance Platform",
+    desc: "MultiSense is a cross-platform mobile application engineered with Flutter to streamline daily sales operations, attendance verification, and team motivation. Built around reactive state management, it provides leadership with instant visibility into field performance while keeping sales representatives engaged with interactive gamification.",
+    features: [
+      "Optimized Attendance Management workflow with quick check-in and attendance history analytics",
+      "Advanced Sales Tracking with real-time target vs. achievement breakdown and regional sales distribution charts",
+      "Competitive Real-Time Leaderboard ranking team performance by sales volume, targets, and incentive tiers",
+      "Clean, modern Flutter architecture with reusable widget libraries delivering uniform UI on Android & iOS",
+      "Optimized JSON serialization and cached REST API endpoints ensuring high frame rates during rapid scrolling",
+      "Firebase Analytics and Crashlytics tracking user journeys and ensuring sub-0.5% crash-free session rates"
+    ],
+    tech: ["Flutter", "Dart", "Cross-Platform", "REST APIs", "State Management", "Firebase Analytics", "Charts & Gamification"],
+    downloadApk: null,
+    images: [
+      { src: "assets/multisense1.jpg", alt: "MultiSense - Sales Analytics & Executive Dashboard" },
+      { src: "assets/multisense2.jpg", alt: "MultiSense - Team Leaderboard & Performance Ranking" },
+      { src: "assets/multisense3.jpg", alt: "MultiSense - Attendance Verification & Daily Log" },
+      { src: "assets/multisense4.jpg", alt: "MultiSense - Product Sales Breakdown Charts" },
+      { src: "assets/multisense5.jpg", alt: "MultiSense - Revenue Target vs Achievement Monitor" }
+    ]
+  },
+  vratt: {
+    title: "V-Ratt",
+    subtitle: "Android (Java + XML) · Retail Audit & Outlet Monitoring",
+    desc: "V-Ratt is a specialized native Android utility tailored for retail audit teams, merchandising supervisors, and regional store operations. It equips field agents with structured audit workflows, stock visibility checks, and instant store-level compliance reporting.",
+    features: [
+      "Interactive Store Visits schedule with map pins, distance calculation, and priority filtering",
+      "Dynamic in-store audit questionnaires with validation for shelf space, promo compliance, and stock levels",
+      "Photo capture with on-device compression and background upload queue for visual shelf verification",
+      "Direct phone call and navigation integrations for seamless routing between retail outlets",
+      "Strict backward compatibility and battery-efficient location tracking across diverse Android device tiers",
+      "Firebase Performance Monitoring to track network payload times and layout render latencies"
+    ],
+    tech: ["Android SDK", "Java", "Material Design", "Location Services", "REST APIs", "Volley", "SQLite", "Play Store Rollouts"],
+    downloadApk: null,
+    images: [
+      { src: "assets/vratt1.jpg", alt: "V-Ratt - Retail Outlets Map & Scheduled Visits" },
+      { src: "assets/vratt2.jpg", alt: "V-Ratt - Store Visit Schedule & Status Log" },
+      { src: "assets/vratt3.jpg", alt: "V-Ratt - In-Store Visual Compliance & Shelving" },
+      { src: "assets/vratt4.jpg", alt: "V-Ratt - Outlet Details & Action Item Checklist" },
+      { src: "assets/vratt5.jpg", alt: "V-Ratt - Territory Coverage & Audit Summary" }
+    ]
+  },
+  fieldinsight: {
+    title: "Field Insight",
+    subtitle: "Android (Java + XML) · On-Ground Field Force Automation",
+    desc: "Field Insight empowers technical service technicians and on-ground field personnel with structured task execution, job checklists, and real-time supervisory tracking. It was engineered to replace error-prone paper workflows with an intuitive, resilient mobile interface.",
+    features: [
+      "Daily visit schedules with GPS location tracking and live route updates",
+      "Step-by-step equipment inspection checklists with mandatory photo proof of work",
+      "Visit summary logging with instant digital customer sign-offs and issue reporting",
+      "Local caching via SQLite ensuring full offline operation during field visits in remote facilities",
+      "Optimized memory usage and asynchronous image processing to maintain smooth performance on budget handsets",
+      "End-to-end Google Play Store lifecycle management including phased rollouts and compliance"
+    ],
+    tech: ["Android SDK", "Java", "GPS & Geofencing", "REST APIs", "SQLite", "Camera API", "Firebase Crashlytics"],
+    downloadApk: null,
+    images: [
+      { src: "assets/fieldinsight1.jpg", alt: "Field Insight - Daily Schedule & Live GPS Tracking" },
+      { src: "assets/fieldinsight2.jpg", alt: "Field Insight - Equipment Inspection Checklist & Camera Capture" },
+      { src: "assets/fieldinsight3.jpg", alt: "Field Insight - Job Summary & Work Verification" },
+      { src: "assets/fieldinsight4.jpg", alt: "Field Insight - Offline Task Queue & Sync Status" },
+      { src: "assets/fieldinsight5.jpg", alt: "Field Insight - Technician Performance & Route Map" }
+    ]
+  },
+  retailspark: {
+    title: "Retail Spark",
+    subtitle: "Flutter (Dart) · Cross-Platform Retail Operations & POS",
+    desc: "Retail Spark is a high-speed cross-platform mobile application developed in Flutter to power retail product discovery, on-demand catalog browsing, stock replenishment, and field order placement with minimal friction.",
+    features: [
+      "Rich visual catalog grid with category filters, dynamic search, and live inventory count badges",
+      "Streamlined shopping cart and instant field order placement workflow",
+      "Unified Flutter codebase eliminating duplicate engineering overhead for iOS and Android",
+      "Optimized asset loading and smooth micro-interactions that elevate brand perception",
+      "RESTful API integration connecting real-time stock levels directly with warehouse management systems",
+      "Firebase In-App Messaging and analytics to communicate flash inventory alerts to store supervisors"
+    ],
+    tech: ["Flutter", "Dart", "Cross-Platform", "REST APIs", "JSON", "Material 3", "State Management", "In-App Messaging"],
+    downloadApk: null,
+    images: [
+      { src: "assets/retailspark1.jpg", alt: "Retail Spark - Interactive Product Catalog & Inventory Badges" },
+      { src: "assets/retailspark2.jpg", alt: "Retail Spark - Category Tabs & Stock Availability View" },
+      { src: "assets/retailspark3.jpg", alt: "Retail Spark - Shopping Cart & Order Summary Bar" },
+      { src: "assets/retailspark4.jpg", alt: "Retail Spark - Product Detail & Variant Selection" },
+      { src: "assets/retailspark5.jpg", alt: "Retail Spark - Store Stock Replenishment Dashboard" }
+    ]
+  },
+  storm: {
+    title: "Storm",
+    subtitle: "Flutter (Dart) · Competitive Performance & KPI Tracker",
+    desc: "Storm is an executive-level performance monitoring and sales gamification application built in Flutter. It empowers regional managers and business leaders to track targets, compare regional milestones, and monitor revenue velocity in real time.",
+    features: [
+      "Dynamic KPI dashboards presenting revenue growth, market share, and customer acquisition metrics",
+      "Target vs. Achievement progress bars comparing quarterly performance against organizational milestones",
+      "Team performance comparison matrices displaying quotas, achievement rates, and leader rankings",
+      "Smooth data animations and chart renders powered by Flutter's customizable graphics pipeline",
+      "Multi-region data filtering and period toggles (Monthly, Quarterly, Annual)",
+      "Continuous integration and automated build verification for rapid Google Play Store releases"
+    ],
+    tech: ["Flutter", "Dart", "Data Visualization", "REST APIs", "Cross-Platform", "Firebase Analytics", "Release Management"],
+    downloadApk: null,
+    images: [
+      { src: "assets/storm1.jpg", alt: "Storm - Executive Performance Dashboard & KPI Metrics" },
+      { src: "assets/storm2.jpg", alt: "Storm - Target vs Achievement Tracking Bars" },
+      { src: "assets/storm3.jpg", alt: "Storm - Team Performance Comparison Table" },
+      { src: "assets/storm4.jpg", alt: "Storm - Quarterly Revenue & Growth Analytics" },
+      { src: "assets/storm5.jpg", alt: "Storm - Regional Sales Velocity & Rankings" }
+    ]
+  }
+};
+
+let carouselAutoPlayInterval = null;
+let currentSlideIndex = 0;
+
+// ─── PROJECT & APP MODAL ──────────────────────────────────────
 function initProjectModal() {
   const overlay = document.getElementById('project-modal');
   if (!overlay) return;
-  const openTriggers = document.querySelectorAll('.project-view-btn, #quickbuzz-card');
-  openTriggers.forEach(el => {
-    el.addEventListener('click', openModal);
+
+  // Open modal on QuickBuzz project card
+  const quickbuzzCard = document.getElementById('quickbuzz-card');
+  if (quickbuzzCard) {
+    quickbuzzCard.addEventListener('click', () => openAppModal('quickbuzz'));
+  }
+  const quickbuzzBtn = document.querySelector('.project-view-btn');
+  if (quickbuzzBtn) {
+    quickbuzzBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openAppModal('quickbuzz');
+    });
+  }
+
+  // Open modal on Multiplier experience app chips
+  document.querySelectorAll('.app-chip[data-app]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const appKey = chip.getAttribute('data-app');
+      openAppModal(appKey);
+    });
+    chip.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const appKey = chip.getAttribute('data-app');
+        openAppModal(appKey);
+      }
+    });
   });
+
+  // Modal close handlers
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
   document.getElementById('modal-close')?.addEventListener('click', closeModal);
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
-  initCarousel();
+
+  // Carousel Prev / Next buttons
+  overlay.querySelector('.carousel-prev')?.addEventListener('click', () => changeSlide(-1));
+  overlay.querySelector('.carousel-next')?.addEventListener('click', () => changeSlide(1));
+}
+
+function openAppModal(appKey) {
+  const data = APPS_DATA[appKey] || APPS_DATA.quickbuzz;
+  const overlay = document.getElementById('project-modal');
+  if (!overlay) return;
+
+  // Populate Title & Subtitle
+  const titleEl = document.getElementById('modal-title-text');
+  const subtitleEl = document.getElementById('modal-subtitle-text');
+  if (titleEl) titleEl.textContent = data.title;
+  if (subtitleEl) subtitleEl.textContent = data.subtitle;
+
+  // Populate Description
+  const descEl = document.getElementById('modal-desc-text');
+  if (descEl) descEl.textContent = data.desc;
+
+  // Populate Key Features
+  const featuresList = document.getElementById('modal-features-list');
+  if (featuresList) {
+    featuresList.innerHTML = data.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
+  }
+
+  // Populate Tech Tags
+  const techWrap = document.getElementById('modal-tech-tags');
+  if (techWrap) {
+    techWrap.innerHTML = data.tech.map(t => `<span class="skill-tag">${escapeHtml(t)}</span>`).join('');
+  }
+
+  // Populate Action buttons (APK download vs Close)
+  const downloadBtn = document.getElementById('modal-download-btn');
+  if (downloadBtn) {
+    if (data.downloadApk) {
+      downloadBtn.href = data.downloadApk;
+      downloadBtn.style.display = 'inline-flex';
+    } else {
+      downloadBtn.style.display = 'none';
+    }
+  }
+
+  // Build Carousel Slides & Dots (5 images per app)
+  const track = document.getElementById('modal-carousel-track');
+  const dotsWrap = document.getElementById('modal-carousel-dots');
+  if (track && dotsWrap) {
+    track.innerHTML = data.images.map(img => `
+      <div class="carousel-slide">
+        <img src="${img.src}" alt="${escapeHtml(img.alt)}" loading="lazy" />
+      </div>
+    `).join('');
+
+    dotsWrap.innerHTML = data.images.map((_, i) => `
+      <button class="carousel-dot ${i === 0 ? 'active' : ''}" aria-label="Go to slide ${i + 1}" data-slide="${i}"></button>
+    `).join('');
+
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+      dot.addEventListener('click', () => goToSlide(idx));
+    });
+  }
+
+  // Reset slide index & start autoplay
+  currentSlideIndex = 0;
+  updateCarouselTrack();
+  startCarouselAutoplay();
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateCarouselTrack() {
+  const track = document.getElementById('modal-carousel-track');
+  const dots = document.querySelectorAll('#modal-carousel-dots .carousel-dot');
+  const totalSlides = dots.length;
+  if (!track || totalSlides === 0) return;
+
+  currentSlideIndex = (currentSlideIndex + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+  dots.forEach((dot, idx) => {
+    dot.classList.toggle('active', idx === currentSlideIndex);
+  });
+}
+
+function goToSlide(idx) {
+  currentSlideIndex = idx;
+  updateCarouselTrack();
+  restartCarouselAutoplay();
+}
+
+function changeSlide(direction) {
+  currentSlideIndex += direction;
+  updateCarouselTrack();
+  restartCarouselAutoplay();
+}
+
+function startCarouselAutoplay() {
+  if (carouselAutoPlayInterval) clearInterval(carouselAutoPlayInterval);
+  carouselAutoPlayInterval = setInterval(() => {
+    currentSlideIndex++;
+    updateCarouselTrack();
+  }, 3800);
+}
+
+function restartCarouselAutoplay() {
+  startCarouselAutoplay();
 }
 
 window.openModal = function() {
-  document.getElementById('project-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  openAppModal('quickbuzz');
 };
+
+window.openAppModal = openAppModal;
 
 window.closeModal = function() {
-  document.getElementById('project-modal').classList.remove('open');
+  const overlay = document.getElementById('project-modal');
+  if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
-};
-
-function initCarousel() {
-  const track = document.querySelector('.carousel-track');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.carousel-dot');
-  if (!track || !slides.length) return;
-  let current = 0;
-  function goTo(idx) {
-    current = (idx + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  if (carouselAutoPlayInterval) {
+    clearInterval(carouselAutoPlayInterval);
+    carouselAutoPlayInterval = null;
   }
-  document.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(current - 1));
-  document.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-  const autoPlay = setInterval(() => goTo(current + 1), 3500);
-  document.getElementById('project-modal')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('project-modal')) clearInterval(autoPlay);
-  });
-  goTo(0);
-}
+};
 
 // ─── CONTACT FORM ─────────────────────────────────────────────
 
@@ -524,7 +744,7 @@ const FAQ = [
   { q: ['education','degree','study','college','bca','ignou','navgurukul'], a: "Tushar holds a BCA from IGNOU (2022–2025) and a Software Programming Diploma from NavGurukul (2020–2021) — NavGurukul's intensive programme launched his dev career." },
   { q: ['award','recognition','achievement','best suggestion','excellence'], a: "Tushar won the Best Suggestion Award (Jul–Sep 2023) for process improvements, and the Excellence in Execution Award (Mar 2026) for disciplined, on-schedule delivery." },
   { q: ['linkedin','github','social','twitter','instagram'], a: "🔗 LinkedIn: linkedin.com/in/tushar-gupta-272192215 | 💻 GitHub: github.com/tushar19970" },
-  { q: ['open to work','available','looking for job','hire','opportunity'], a: "Yes! Tushar is actively open to full-time, contract, and freelance opportunities in mobile development (Android & Flutter)." },
+  { q: ['open to work','available','looking for job','hire','opportunity','freelance','contract'], a: "Tushar specializes in Android (Java) and cross-platform Flutter development. You can reach out directly via email at tusharkansal09451@gmail.com or via the Contact section to discuss projects and roles!" },
   { q: ['intern','a2d','backend'], a: "Before mobile development, Tushar did a 2-month backend internship at A2D Innovations (Nov 2021–Jan 2022), which sharpened his understanding of client-server architecture." },
   { q: ['play store','publish','release','deployment'], a: "Tushar manages the full Play Store release cycle — versioning, staged rollouts, release notes, and compliance — for 15+ live apps." },
   { q: ['location','city','india','where are you'], a: "Tushar is based in India and is open to remote as well as on-site opportunities." },
